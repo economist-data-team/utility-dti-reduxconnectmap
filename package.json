@@ -1,0 +1,97 @@
+{
+  "name": "@economist/utility-dti-reduxconnectmap",
+  "version": "0.0.0-development",
+  "description": "a convenience function for writing simple redux connects",
+  "homepage": "https://github.com/economist-data-team/utility-dti-reduxconnectmap",
+  "bugs": {
+    "url": "https://github.com/economist-data-team/utility-dti-reduxconnectmap/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "lib/*",
+    "assets/*"
+  ],
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/economist-data-team/utility-dti-reduxconnectmap.git"
+  },
+  "scripts": {
+    "access": "npm-run-all --parallel access:*",
+    "access:public": "npm access public $npm_package_name",
+    "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
+    "build": "npm-run-all --parallel build:*",
+    "build:js": "babel $npm_package_directories_src -d $npm_package_directories_lib --source-maps inline",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:js": "eslint --ignore-path .gitignore .",
+    "provision": "provision-npm-utility",
+    "prepublish": "npm run build",
+    "postpublish": "npm run access",
+    "semantic-release": "semantic-release pre || exit 0; npm publish && semantic-release post",
+    "start": "npm run watch",
+    "pretest": "npm run lint",
+    "test": "karma start",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:js": "karma start --singleRun=false"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+  "babel": {
+    "compact": false,
+    "ignore": "node_modules",
+    "stage": 2
+  },
+  "eslintConfig": {
+    "extends": [
+      "strict",
+      "strict-react"
+    ]
+  },
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "babel-polyfill": "^6.6.1",
+    "babelify": "^6.4.0",
+    "browserify": "^13.0.0",
+    "browserify-istanbul": "^1.0.0",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "eslint": "^2.8.0",
+    "eslint-config-strict": "^8.5.0",
+    "eslint-config-strict-react": "^8.0.1",
+    "eslint-plugin-filenames": "^0.2.0",
+    "eslint-plugin-react": "^4.2.1",
+    "ghooks": "^1.2.1",
+    "isparta": "^3.5.3",
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.2",
+    "karma-coverage": "^0.5.5",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^0.3.1",
+    "live-server": "^0.9.2",
+    "mocha": "^2.4.5",
+    "npm-assets": "^0.1.1",
+    "npm-run-all": "^1.5.3",
+    "phantomjs-prebuilt": "^2.1.5",
+    "semantic-release": "^4.3.5",
+    "validate-commit-msg": "^2.6.1",
+    "watchify": "^3.7.0"
+  },
+  "defDependencies": {},
+  "dependencies": {
+    "lodash": "^4.12.0",
+    "react": "^15.0.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  }
+}
